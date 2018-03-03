@@ -19,7 +19,7 @@ Before using this stack you need to have below things already in your infrastruc
 
  * #### List of Directives
  
-	* (1) “source”: where all the data come from 
+	* (1) `source`: where all the data come from 
 	
 			Fluentd’s input sources are enabled by selecting and configuring the desired input plugins 
 			using source directives. Fluentd’s standard input plugins include http and forward. 
@@ -27,38 +27,51 @@ Before using this stack you need to have below things already in your infrastruc
 			forward turns fluentd into a TCP endpoint to accept TCP packets. Of course, 
 			it can be both at the same time (You can add as many sources as you wish)
 			
-	* match 
+	* (2) `match`: Tell fluentd what to do! 
 		
-			directives determine the output destinations.
+			The “match” directive looks for events with matching tags and processes them. 
+			The most common use of the match directive is to output events to other systems (
+			for this reason, the plugins that correspond to the match directive are called “output plugins”). 
+			Fluentd’s standard output plugins include file and forward.Each match directive must include a match pattern and a @type parameter. 
+			Only events with a tag matching the pattern will be sent to the output destination (in the above example, 
+			only the events with the tag “myapp.access” is matched). The @type parameter specifies the output plugin to use.
 				
-	* filter 
+	* `filter`: Event processing pipeline 
 
-			directives determine the event processing pipelines.
+			The “filter” directive has same syntax as “match” but “filter” could be chained for processing pipeline. Using filters
+			Received event, {"event":"data"}, goes to record_transformer filter first. record_transformer adds “host_param” field 
+			to event and filtered event, {"event":"data","host_param":"webserver1"}, goes to file output.
 
-	* system 
+	* Set system wide configuration: the `system` directive
 			
-			directives set system wide configuration.
+			Following configurations are set by system directive. You can set same configurations by fluentd options:
+
+				log_level
+				suppress_repeated_stacktrace
+				emit_error_log_interval
+				suppress_config_dump
+				without_source
+				process_name (only available in system directive. No fluentd option)
 		
-	* label 
+	* Group filter and output: the `label` directive
 	
-			directives group the output and filter for internal routing
+			The “label” directive groups filter and output for internal routing. “label” reduces the complexity of tag handling. 
+			Here is a configuration example. “label” is built-in plugin parameter so @ prefix is needed.
 			
 
-	* @include
+	* Re-use your config: the `@include` directive
 		
-			directives include other files.
+			Directives in separate configuration files can be imported using the @include directive:
+			The @include directive supports regular file path, glob pattern, and http URL conventions:
+			Note for glob pattern, files are expanded in the alphabetical order. If you have a.conf and b.conf, 
+			fluentd parses a.conf first. But you should not write the configuration depends on this order. 
+			It is so error prone. Please separate @include for safety
 			
-				
-	* CloudWatch Plugins
-
-		* You can use your own CloudWatch plugins for this stack
-		* Make sure that Alert name should be in the above mentioned format.
-	
 	
  
- * #### td-agent server config exaplained
+ * #### Creating log pattens
  
-	* Configuring/Installing StackStorm  - Same as public cloud
+	* use Rubular.com to create custom logging par
 			
 	* Configuring/Installing StackStorm Packs
 		
@@ -71,28 +84,4 @@ Before using this stack you need to have below things already in your infrastruc
 			st2 rule add -f GLAuto-Remedial-Stack/stackstrom/rules/summary.yaml	
 				
 	* Installing RunDeck/CLI - Same as public cloud
-			
-	* Configure RunDeck - Same as public cloud
 
-	* Installing Redmine - Same as public cloud
-					
-	* Installing RabbiMQ
-
-			Use below link to install RabbitMQ
-				https://www.rabbitmq.com/install-rpm.html
-		
-	* Installing Prometheus
-
-			Use below link to install Prometheus
-				https://prometheus.io/docs/prometheus/latest/installation/
-			
-	* Installing Alerta
-
-			Alerta installation
-				http://alerta.readthedocs.io/en/latest/quick-start.html
-				https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp
-			
-	* Prometheus Plugins
-		* You can use official prometheus plugin
-		* Or use metrics.sh for customize plugin
-		
