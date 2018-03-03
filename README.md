@@ -32,34 +32,31 @@ Before using this stack you need to have below things already in your infrastruc
 			The “match” directive looks for events with matching tags and processes them. 
 			The most common use of the match directive is to output events to other systems (
 			for this reason, the plugins that correspond to the match directive are called “output plugins”). 
-			Fluentd’s standard output plugins include file and forward.Each match directive must include a match pattern and a @type parameter. 
-			Only events with a tag matching the pattern will be sent to the output destination (in the above example, 
-			only the events with the tag “myapp.access” is matched). The @type parameter specifies the output plugin to use.
+			Fluentd’s standard output plugins include file and forward. 
+			Each match directive must include a match pattern and a @type parameter. 
 				
-	* `filter`: Event processing pipeline 
+	* (3) `filter`: Event processing pipeline 
 
-			The “filter” directive has same syntax as “match” but “filter” could be chained for processing pipeline. Using filters
-			Received event, {"event":"data"}, goes to record_transformer filter first. record_transformer adds “host_param” field 
-			to event and filtered event, {"event":"data","host_param":"webserver1"}, goes to file output.
+			The “filter” directive has same syntax as “match” but “filter” could be chained for processing pipeline. 
+			Using filters Received event, {"event":"data"}, goes to record_transformer filter first. 
+			record_transformer adds “host_param” field  to event and filtered event,   {"event":"data","host_param":"webserver1"}, goes to file output.
 
-	* Set system wide configuration: the `system` directive
+	* (4) Set system wide configuration: the `system` directive
 			
-			Following configurations are set by system directive. You can set same configurations by fluentd options:
-
-				log_level
+			Following configurations are set by system directive. You can set same configurations by fluentd options:					log_level
 				suppress_repeated_stacktrace
 				emit_error_log_interval
 				suppress_config_dump
 				without_source
 				process_name (only available in system directive. No fluentd option)
 		
-	* Group filter and output: the `label` directive
+	* (5) Group filter and output: the `label` directive
 	
-			The “label” directive groups filter and output for internal routing. “label” reduces the complexity of tag handling. 
-			Here is a configuration example. “label” is built-in plugin parameter so @ prefix is needed.
+			The “label” directive groups filter and output for internal routing. 
+			“label” reduces the complexity of tag handling. 
 			
 
-	* Re-use your config: the `@include` directive
+	* (6) Re-use your config: the `@include` directive
 		
 			Directives in separate configuration files can be imported using the @include directive:
 			The @include directive supports regular file path, glob pattern, and http URL conventions:
