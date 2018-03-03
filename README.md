@@ -71,17 +71,8 @@ Before using this stack you need to have below things already in your infrastruc
  
  * #### Creating log pattens
  
-	* use Rubular.com to create custom logging par
+	* Use rubular.com to create custom logging patterns
 			
-	* Configuring/Installing StackStorm Packs
+	* Ruby RegEx quick refrence
 		
-			After Installation use st2 utility to install required packs
-			st2 pack install rabbitmq
-			st2 pack config rabbitmq
-			enter your cred's and queue name
-			git clone https://github.com/GloballogicPractices/GLAuto-Remedial-Stack.git
-			st2 rule add -f GLAuto-Remedial-Stack/stackstrom/rules/remedy.yaml
-			st2 rule add -f GLAuto-Remedial-Stack/stackstrom/rules/summary.yaml	
-				
-	* Installing RunDeck/CLI - Same as public cloud
 
