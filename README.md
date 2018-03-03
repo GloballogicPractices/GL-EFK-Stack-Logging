@@ -21,7 +21,11 @@ Before using this stack you need to have below things already in your infrastruc
  
 	* (1) “source”: where all the data come from 
 	
-			Fluentd’s input sources are enabled by selecting and configuring the desired input plugins using source directives. Fluentd’s standard input plugins include http and forward. http turns fluentd into an HTTP endpoint to accept incoming HTTP messages whereas forward turns fluentd into a TCP endpoint to accept TCP packets. Of course, it can be both at the same time (You can add as many sources as you wish)
+			Fluentd’s input sources are enabled by selecting and configuring the desired input plugins 
+			using source directives. Fluentd’s standard input plugins include http and forward. 
+			http turns fluentd into an HTTP endpoint to accept incoming HTTP messages whereas 
+			forward turns fluentd into a TCP endpoint to accept TCP packets. Of course, 
+			it can be both at the same time (You can add as many sources as you wish)
 			
 	* match 
 		
