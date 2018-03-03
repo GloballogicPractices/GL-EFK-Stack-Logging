@@ -72,6 +72,6 @@ Before using this stack you need to have below things already in your infrastruc
  
 	* Use rubular.com to create custom logging patterns
 			
-	* Ruby RegEx quick refrence
+	* Ruby RegEx quick reference
 		
 	![image](https://user-images.githubusercontent.com/17526588/36933686-573983e4-1f03-11e8-8086-17b17e9e6f84.png)
