@@ -37,13 +37,15 @@ Before using this stack you need to have below things already in your infrastruc
 				
 	* (3) `filter`: Event processing pipeline 
 
-			The “filter” directive has same syntax as “match” but “filter” could be chained for processing pipeline. 
-			Using filters Received event, {"event":"data"}, goes to record_transformer filter first. 
-			record_transformer adds “host_param” field  to event and filtered event,   {"event":"data","host_param":"webserver1"}, goes to file output.
+			The “filter” directive has same syntax as “match” but “filter” could be chained for 
+			processing pipeline. Using filters Received event, {"event":"data"}, 
+			goes to record_transformer filter first. record_transformer adds “host_param” field  
+			to event and filtered event, {"event":"data","host_param":"webserver1"}, goes to file output.
 
 	* (4) Set system wide configuration: the `system` directive
 			
-			Following configurations are set by system directive. You can set same configurations by fluentd options:					log_level
+			Following configurations are set by system directive. You can set same configurations by fluentd options:					
+				log_level
 				suppress_repeated_stacktrace
 				emit_error_log_interval
 				suppress_config_dump
